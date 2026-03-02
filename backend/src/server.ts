@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import dotenv from 'dotenv';
 import rateLimit from 'express-rate-limit';
 import authRoutes from './routes/auth.routes';
+import toolRoutes from './routes/tool.routes';
 import { errorHandler } from './middleware/error.middleware';
 
 dotenv.config();
@@ -25,6 +26,7 @@ app.get('/health', (req: Request, res: Response) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/tools', toolRoutes);
 
 app.use((req: Request, res: Response) => {
   res.status(404).json({ error: 'Route not found', path: req.path });
